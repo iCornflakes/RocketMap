@@ -1985,23 +1985,37 @@ function processGym(i, item) {
         }
     }
 
+    if (Store.get('showParkGymsOnly')) {
+        if (!item.park) {
+            removeGymFromMap(item['gym_id'])
+            return true
+        }
+    }
+
     if (!Store.get('showGyms')) {
         if (Store.get('showRaids') && !isValidRaid(item.raid)) {
             removeGymFromMap(item['gym_id'])
             return true
         }
+	}
 
-        if (Store.get('showActiveRaidsOnly')) {
-            if (!isOngoingRaid(item.raid)) {
-                removeGymFromMap(item['gym_id'])
-                return true
-            }
+    if (Store.get('showParkRaidsOnly')) {
+        if (!item.park) {
+            removeGymFromMap(item['gym_id'])
+            return true
         }
+    }
+
+    if (Store.get('showActiveRaidsOnly')) {
+        if (!isOngoingRaid(item.raid)) {
+            removeGymFromMap(item['gym_id'])
+            return true
+        }
+    }
 
         if (raidLevel > Store.get('showRaidMaxLevel') || raidLevel < Store.get('showRaidMinLevel')) {
             removeGymFromMap(item['gym_id'])
             return true
-        }
     }
 
     if (Store.get('showTeamGymsOnly') && Store.get('showTeamGymsOnly') !== item.team_id) {

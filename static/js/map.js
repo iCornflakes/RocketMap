@@ -2003,6 +2003,7 @@ function processGym(i, item) {
             return true
         }
     }
+}
 
     if (Store.get('showTeamGymsOnly') && Store.get('showTeamGymsOnly') !== item.team_id) {
         removeGymFromMap(item['gym_id'])

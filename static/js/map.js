@@ -1375,7 +1375,7 @@ function setupGymMarker(item) {
 function updateGymMarker(item, marker) {
     let raidLevel = getRaidLevel(item.raid)
     let markerImage = ''
-    const hasActiveRaid = item.raid && item.raid.end > Date.now()
+    const hasActiveRaid = item.raid && Date.now() < item.raid.end && Date.now() > item.raid.start
     const raidLevelVisible = raidLevel >= Store.get('showRaidMinLevel') && raidLevel <= Store.get('showRaidMaxLevel')
     const showRaidSetting = Store.get('showRaids') && (!Store.get('showActiveRaidsOnly') || !Store.get('showParkRaidsOnly'))
 
